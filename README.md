@@ -1,7 +1,8 @@
 # opencode-plugins
 
-My custom [opencode](https://opencode.ai) v2 TUI plugins, managed in one repo and symlinked into
-`~/.config/opencode/plugins/` (the v2 TUI plugin discovery follows symlinks).
+My custom [opencode](https://opencode.ai) v2 TUI plugins. Each plugin is its own git repo cloned
+directly into `~/.config/opencode/plugins/<name>/` (the v2 TUI plugin discovery auto-loads
+directory plugins there; no config registration needed).
 
 ## plugins/bell-notifier
 
@@ -20,11 +21,11 @@ Subagent sessions are skipped; 500 ms debounce.
 **Install**:
 
 ```bash
-git clone https://github.com/HecterF/opencode-plugins ~/doc/github/opencode-plugins
-ln -s ~/doc/github/opencode-plugins/plugins/bell-notifier ~/.config/opencode/plugins/bell-notifier
+git clone https://github.com/HecterF/opencode-plugins ~/.config/opencode/plugins/bell-notifier
 ```
 
-No config registration needed — opencode v2 auto-discovers directory plugins under
+The plugin directory *is* the git repo, so updates are just `git pull` inside it. No config
+registration needed — opencode v2 auto-discovers directory plugins under
 `~/.config/opencode/plugins/`.
 
 **Background**: upstream bug report for the bell channel of `@mohak34/opencode-notifier` on v2:
