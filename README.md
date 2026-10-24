@@ -18,6 +18,14 @@ the tab active and pop a click-to-tab notification (Tabby "Notify on activity").
 `session.execution.succeeded/interrupted` (complete), `session.execution.failed` (error).
 Subagent sessions are skipped; 500 ms debounce.
 
+**Multiple TUIs** (session tabs disabled — `tui.json` `"tabs": {"mode": "off"}`): all TUIs
+connect to the same server and every TUI receives events for *all* sessions. The plugin rings
+only for sessions this TUI has displayed (recorded while the router points at them):
+a task started here keeps ringing on completion even after you switch to another session in
+this TUI, and a task in another terminal's TUI never rings here. Already-done tasks don't
+re-ring (per-execution dedup). Restarting the TUI re-registers the restored session, so
+in-flight tasks still notify.
+
 **Install**:
 
 ```bash
